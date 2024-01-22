@@ -8,10 +8,11 @@ import { HorizontalSlider } from '../components/HorizontalSlider';
 
 export const HomeScreen = () => {
 
-   const { peliculasEnCine, isLoading, peliculasPopulares } = UseMovies();
+   const { nowPlaying, isLoading, popular, topRated, upconing, peliculasEnCine } = UseMovies();
+   //const { isLoading, peliculasEnCine } = UseMovies();
    const { top } = useSafeAreaInsets();
    const { width: windowWidth } = Dimensions.get('window');
-   //console.log(peliculasPopulares)
+   console.log('homescreem', peliculasEnCine)
    if (isLoading) {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
          <ActivityIndicator color="red" size={100} />
@@ -30,8 +31,10 @@ export const HomeScreen = () => {
                   inactiveSlideOpacity={0.9}
                />
             </View>
-            {/* <HorizontalSlider title='En cine' movies={peliculasEnCine}/> */}
-            <HorizontalSlider title='Populares' movies={peliculasPopulares}/>
+            <HorizontalSlider title='En cine' movies={peliculasEnCine}/>
+            <HorizontalSlider title='Popular' movies={popular}/>
+            <HorizontalSlider title='Top Rated' movies={topRated}/>
+            <HorizontalSlider title='Upcoming' movies={upconing}/> 
 
          </View>
       </ScrollView>
