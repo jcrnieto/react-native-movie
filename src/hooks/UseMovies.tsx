@@ -6,7 +6,7 @@ interface MovieState {
     nowPlaying: Movie[];
     popular: Movie[];
     topRated: Movie[];
-    upconing: Movie[];
+    upcoming: Movie[];
 }
 
 export const UseMovies = () => {
@@ -19,7 +19,7 @@ export const UseMovies = () => {
         nowPlaying: [],
         popular: [],
         topRated: [],
-        upconing: [],
+        upcoming: [],
     });
 
     const getMovies = async () => {
@@ -28,13 +28,13 @@ export const UseMovies = () => {
          const nowPlayingPromise =  movieDB.get<MovieDBMoviesResponse>('/now_playing');
          const popularPromise =  movieDB.get<MovieDBMoviesResponse>('/popular');
          const topRatedPromise =  movieDB.get<MovieDBMoviesResponse>('/top_rated');
-         const upconingPromise =  movieDB.get<MovieDBMoviesResponse>('/upconing');
+         const upcomingPromise =  movieDB.get<MovieDBMoviesResponse>('/upcoming');
         
          const resp = await Promise.all([
             nowPlayingPromise,
             popularPromise, 
             topRatedPromise,
-            upconingPromise
+            upcomingPromise
          ]);
          setpeliculasEnCine(respNowPlaying.data.results)
          //console.log('fdd',setpeliculasEnCine(respNowPlaying.data.results))
@@ -42,7 +42,7 @@ export const UseMovies = () => {
             nowPlaying: resp[0].data.results,
             popular: resp[1].data.results , 
             topRated: resp[2].data.results ,
-            upconing: resp[3].data.results
+            upcoming: resp[3].data.results
          })
         
          setIsLoading(false);
@@ -54,7 +54,6 @@ export const UseMovies = () => {
      
     return {
        ...moviState,
-       peliculasEnCine,
        isLoading,
     }
  
